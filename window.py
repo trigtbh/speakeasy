@@ -24,8 +24,13 @@ class Window:
                 else:
                     for i in range(x1 + 1, x2):
                         print(self.term.move_xy(i, y1) + "─", end="")
+            panel.render()
         for c in corners:
             print(self.term.move_xy(*c) + "█", end="")
+
+
+
+        print("", end="", flush=True)
 
     def run(self):
         with self.term.cbreak(), self.term.mouse_enabled(), self.term.hidden_cursor():
@@ -45,6 +50,7 @@ class Window:
 
 
 w = Window()
-w.panels.append(Panel(w.term, 0, 0.2, 1, 0.2, full_border=True))
+w.panels.append(Panel(w.term, 0, 0, 0.5, 1, title="Panel 1"))
+w.panels.append(Panel(w.term, 0.5, 0, 0.5, 1, title="Panel 2"))
 
 w.run()
